@@ -1,0 +1,31 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context=".MainActivity" >
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/mActivityRecyclerView"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"/>
+
+    <View
+        android:layout_width="2dp"
+        android:layout_height="match_parent"
+        android:backgroundTint="@android:color/tertiary_text_light"/>
+
+
+
+    <fragment android:id="@+id/test_fragment"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        class="com.example.lifecyclelog.fragments.TestFragment"
+        tools:layout="@layout/fragment_test"/>
+
+</LinearLayout>

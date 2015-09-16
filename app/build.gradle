@@ -1,0 +1,39 @@
+apply plugin: 'com.android.application'
+apply plugin: 'android-apt'
+
+def AAVersion = '3.2'
+
+dependencies {
+    apt "org.androidannotations:androidannotations:$AAVersion"
+    compile "org.androidannotations:androidannotations-api:$AAVersion"
+}
+
+apt {
+    arguments {
+        androidManifestFile variant.outputs[0].processResources.manifestFile
+        resourcePackageName 'com.example.lifecyclelog'
+    }
+}
+
+android {
+    compileSdkVersion 23
+    buildToolsVersion "20.0.0"
+
+    defaultConfig {
+        applicationId "com.example.lifecyclelog"
+        minSdkVersion 8
+        targetSdkVersion 19
+    }
+
+    buildTypes {
+        release {
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
+        }
+    }
+}
+
+dependencies {
+    compile 'com.android.support:support-v4:20.+'
+    compile 'com.android.support:recyclerview-v7:21.0.2'
+
+}
