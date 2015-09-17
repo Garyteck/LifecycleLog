@@ -5,7 +5,6 @@ import android.text.TextUtils;
 import android.util.Log;
 
 import com.example.lifecyclelog.activities.MainActivity_;
-import com.example.lifecyclelog.base.RecordingActivity;
 import com.example.lifecyclelog.model.ActivityRecords;
 import com.example.lifecyclelog.model.FragmentRecords;
 import com.example.lifecyclelog.model.Record;

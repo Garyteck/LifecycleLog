@@ -1,7 +1,5 @@
 package com.example.lifecyclelog.model;
 
-import android.support.v4.app.FragmentActivity;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Observable;
@@ -9,6 +7,8 @@ import java.util.Observable;
 /**
  */
 public class FragmentRecords extends Observable{
+
+
 
     public List<Record> getValue() {
         return mFragmentRecords;
@@ -22,6 +22,9 @@ public class FragmentRecords extends Observable{
         notifyObservers(fragmentRecord);
     }
 
+    public List<Record> getmFragmentRecords() {
+        return mFragmentRecords;
+    }
 
 
 

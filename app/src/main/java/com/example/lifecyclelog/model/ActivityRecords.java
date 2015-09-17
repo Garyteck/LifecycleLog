@@ -8,7 +8,13 @@ import java.util.Observable;
  */
 public class ActivityRecords extends Observable{
 
-    List<Record> mActivityRecords = new ArrayList<>();
+
+
+    private List<Record> mActivityRecords = new ArrayList<>();
+
+    public List<Record> getmActivityRecords() {
+        return mActivityRecords;
+    }
 
     public void add(Record activityRecord) {
         mActivityRecords.add(activityRecord);

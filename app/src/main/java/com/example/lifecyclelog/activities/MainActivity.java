@@ -10,14 +10,11 @@ import com.example.lifecyclelog.BaseApp;
 import com.example.lifecyclelog.R;
 import com.example.lifecyclelog.base.MethodRecordAdapter;
 import com.example.lifecyclelog.base.RecordingActivity;
-import com.example.lifecyclelog.model.Record;
 
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.EActivity;
 import org.androidannotations.annotations.ViewById;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Observable;
 import java.util.Observer;
 
@@ -33,7 +30,6 @@ public class MainActivity extends RecordingActivity implements Observer{
     @ViewById
     RecyclerView mActivityRecyclerView;
 
-    List<Record> mRecords = new ArrayList<>();
 
     MethodRecordAdapter methodRecordAdapter = new MethodRecordAdapter(this);
 
@@ -46,12 +42,13 @@ public class MainActivity extends RecordingActivity implements Observer{
 
     @AfterViews
     void afterViews() {
-        final LinearLayoutManager layoutManager = new LinearLayoutManager(this);
-        layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this) {
+            @Override
+            public RecyclerView.LayoutParams generateDefaultLayoutParams() {
+                return new RecyclerView.LayoutParams(RecyclerView.LayoutParams.MATCH_PARENT, RecyclerView.LayoutParams.MATCH_PARENT);
+            }
+        };
         mActivityRecyclerView.setLayoutManager(layoutManager);
-
-        methodRecordAdapter.addAll(mRecords);
-
         mActivityRecyclerView.setAdapter(methodRecordAdapter);
     }
 
@@ -59,7 +56,8 @@ public class MainActivity extends RecordingActivity implements Observer{
     @Override
     public void update(Observable observable, Object o) {
         if (methodRecordAdapter != null ) {
-            methodRecordAdapter.add((Record) o);
+            methodRecordAdapter.clear();
+            methodRecordAdapter.addAll(mBaseApp.getmActivityRecords().getmActivityRecords());
             if (mActivityRecyclerView != null) {
                 mActivityRecyclerView.scrollToPosition(methodRecordAdapter.getItemCount()-1);
 
